@@ -112,7 +112,7 @@ function off(object, eventListener) {
 /**
  * Emit an event on object.
  * @param {Object} object Object to emit to.
- * @param {*=} emitArguments Arguments to pass to event listeners.
+ * @param {...*} emitArguments Arguments to pass to event listeners.
  * @return {Promise} Promise when emit has finished on all event listeners.
  */
 function emit(object) {
