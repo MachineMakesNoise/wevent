@@ -1,0 +1,28 @@
+{
+  "env": {
+    "es6" : true
+  },
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "rules": {
+    "indent": [2, 2],
+    "max-len": [2, 80, 2],
+    "dot-location": [2, "object"],
+    "no-undefined": 2,
+    "no-var": 2,
+    "prefer-const": 2,
+    "no-inner-declarations": [2, "both"],
+    "no-useless-call": 2,
+    "camelcase": 2,
+    "eqeqeq": [2],
+    "curly": [2, "multi-or-nest", "consistent"],
+    "brace-style": [2, "stroustrup"],
+    "quotes": [2, "double", "avoid-escape"],
+    "object-curly-spacing": [2, "always"],
+    "no-extra-semi" : 2,
+    "semi": [2, "always"],
+    "require-jsdoc": 2,
+    "valid-jsdoc": 2
+  }
+}
