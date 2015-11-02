@@ -1,6 +1,6 @@
 {
   "name": "wevent",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Weak event system for ES6.",
   "main": "index.js",
   "scripts": {
