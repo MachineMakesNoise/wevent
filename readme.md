@@ -72,6 +72,14 @@ This and few more example in [example](example) directory.
 
 ## Changes
 
+###31.10.2015 - 0.1.1
+
+<pre>
+* Corrected emitArguments to be variable length argument list unknown committed 
+6 minutes ago
+* Changed description to match that of github 
+</pre>
+
 ###31.10.2015 - 0.1.0
 
 <pre>
