@@ -6,7 +6,7 @@
 <dt><a href="#off">off(object, [eventListener])</a> ⇒ <code>undefined</code></dt>
 <dd><p>Unbind event listener on object.</p>
 </dd>
-<dt><a href="#emit">emit(object, [emitArguments])</a> ⇒ <code>Promise</code></dt>
+<dt><a href="#emit">emit(object, ...emitArguments)</a> ⇒ <code>Promise</code></dt>
 <dd><p>Emit an event on object.</p>
 </dd>
 <dt><a href="#getEventListenerCount">getEventListenerCount(object, [eventListener])</a> ⇒ <code>number</code></dt>
@@ -38,7 +38,7 @@ Unbind event listener on object.
 | [eventListener] | <code>function</code> | Event listener to unbind, if none given unbinds all event listeners on the given object. |
 
 <a name="emit"></a>
-## emit(object, [emitArguments]) ⇒ <code>Promise</code>
+## emit(object, ...emitArguments) ⇒ <code>Promise</code>
 Emit an event on object.
 
 **Kind**: global function  
@@ -47,7 +47,7 @@ Emit an event on object.
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>Object</code> | Object to emit to. |
-| [emitArguments] | <code>\*</code> | Arguments to pass to event listeners. |
+| ...emitArguments | <code>\*</code> | Arguments to pass to event listeners. |
 
 <a name="getEventListenerCount"></a>
 ## getEventListenerCount(object, [eventListener]) ⇒ <code>number</code>
