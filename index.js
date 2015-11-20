@@ -1,1 +1,1 @@
-module.exports = require("./src/wevent.js");
+module.exports = require("./lib/wevent.js");
