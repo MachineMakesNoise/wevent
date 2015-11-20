@@ -5,18 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha",
-    "lint": "node node_modules/eslint/bin/eslint.js src test example",
-    "doc": "node node_modules/jsdoc-to-markdown/bin/cli.js \"src/**/*.js\" > api.md"
+    "lint": "node node_modules/eslint/bin/eslint.js lib test",
+    "coverage": "node node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha",
+    "doc": "node node_modules/jsdoc-to-markdown/bin/cli.js \"lib/**/*.js\" > api.md"
   },
   "author": "Santtu Syrjälä",
   "license": "Apache 2.0",
   "repository" : "https://github.com/saviilsy/wevent.git",
   "devDependencies": {
-    "babel": "5.8.23",
-    "chai": "3.3.0",
     "co": "4.6.0",
-    "eslint": "1.7.2",
-    "jsdoc-to-markdown": "^1.2.0",
+    "bunyan": "1.5.1",
+    "chai": "3.4.0",
+    "eslint": "1.7.3",
+    "istanbul": "0.4.0",
+    "jsdoc-to-markdown": "1.2.0",
     "mocha": "2.3.3"
   }
 }

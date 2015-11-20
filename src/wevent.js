@@ -10,8 +10,8 @@ const eventObjects = new WeakMap();
  * @return {Map<Function, Array<Function>>} Event listener entry.
  */
 function _getEventListeners(object, create) {
-  if (!(object instanceof Object) && create)
-    throw new Error(`Can only bind event listener to type of "object"`);
+  if (!(object instanceof Object))
+    throw new Error(`Can only bind event listener to instance of "Object".`);
   let eventListeners = eventObjects.get(object);
   if (!eventListeners && create)
     eventObjects.set(object, eventListeners = new Map());
@@ -53,7 +53,6 @@ function _emitEventListener(
             eventListener,
             emitArguments
           ), 0);
-          break;
         default :
           break;
         }
@@ -93,8 +92,7 @@ function on(object, eventListener) {
  */
 function off(object, eventListener) {
   const eventListeners = _getEventListeners(object, false);
-  if (!eventListeners)
-    return;
+  if (!eventListeners) return;
   let removeEventListenerObject = false;
   if (eventListener) {
     const eventListenerEntry = eventListeners.get(eventListener);
@@ -105,8 +103,7 @@ function off(object, eventListener) {
   else {
     removeEventListenerObject = true;
   }
-  if (removeEventListenerObject)
-    eventObjects.delete(object);
+  if (removeEventListenerObject) eventObjects.delete(object);
 }
 
 /**
@@ -132,14 +129,8 @@ function emit(object) {
         emitArguments)));
     }
   });
-  return Promise.all(promises).then((results) => {
-    const eventListeners = _getEventListeners(object, false);
-    if (eventListeners && eventListeners.size < 1)
-      eventObjects.delete(object);
-    return results ? results.reduce(
-      (previous, current) => previous + current, 0) :
-      null;
-  }, (err) => {
+  return Promise.all(promises).then((results) => results.reduce(
+      (previous, current) => previous + current, 0), (err) => {
     return Promise.reject(err);
   });
 }

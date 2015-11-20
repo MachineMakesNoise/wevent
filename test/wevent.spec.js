@@ -15,9 +15,12 @@ describe("wevent", () => {
       const  obj = {};
       expect(() => on(obj, () => "added")).to.not.throw(Error);
     });
-    it("should throw Error adding wront type of event listener", () => {
+    it("should throw Error adding wrong type of event listener", () => {
       const  obj = {};
       expect(() => on(obj, 1234)).to.throw(Error);
+    });
+    it("should throw Error adding to wrong type of handle", () => {
+      expect(() => on(1234, function() {})).to.throw(Error);
     });
   });
   describe("off", () => {
@@ -41,8 +44,25 @@ describe("wevent", () => {
         expect(emitted).to.equal(false);
       })
     );
+    it("should remove event listener by removing all from object", ()=>
+      co(function*() {
+        const obj = {};
+        let emitted = false;
+        const eventListener = () => emitted = true;
+        on(obj, eventListener);
+        off(obj);
+        yield emit(obj);
+        expect(emitted).to.equal(false);
+      })
+    );
+    it("should succeed removing event that doesn't exist", ()=> co(function*() {
+      off({}, () => null);
+    }));
   });
   describe("emit", () => {
+    it("should emit to no listener", () => co(function*() {
+      yield emit({});
+    }));
     it("should emit to one listener", () => co(function*() {
       const obj = {};
       let emitted = false;
