@@ -3,6 +3,7 @@
 const expect = require("chai").expect;
 const co = require("co");
 const wevent = require("../index.js");
+const Wevent = wevent.Wevent;
 
 const on = wevent.on;
 const off = wevent.off;
@@ -289,7 +290,34 @@ describe("wevent", () => {
       expect(count(obj)).to.equal(0);
       expect(count(obj, eventListener1)).to.equal(0);
       expect(count(obj, eventListener2)).to.equal(0);
+    }
+  ));
+  it("should create isolated Wevent instance and not leak emit",
+    () => co(function*() {
+      const obj = {};
 
+      const instance = new Wevent();
+      let emitted = 0;
+
+      const eventListener = () => emitted++;
+      instance.on(obj, eventListener);
+      yield emit(obj);
+      yield instance.emit(obj);
+      expect(emitted).to.equal(1);
+    }
+  ));
+  it("should create isolated Wevent instance and not leak on",
+    () => co(function*() {
+      const obj = {};
+
+      const instance = new Wevent();
+      let emitted = 0;
+
+      const eventListener = () => emitted++;
+      on(obj, eventListener);
+      instance.on(obj, eventListener);
+      yield instance.emit(obj);
+      expect(emitted).to.equal(1);
     }
   ));
 });

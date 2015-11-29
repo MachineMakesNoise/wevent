@@ -17,7 +17,8 @@ not required
 functions from event listener (e.g. possible to do "once", "re-emitting" or 
 similar more "complex" event listeners).
 * Small (<200 lines with comments), no runtime dependencies
-
+* Does not pollute either target or listener
+* Can be used to create isolated event listener system
 
 ## API
 
@@ -72,7 +73,7 @@ This and few more example in [example](example) directory.
 
 ## Changes
 
-###31.10.2015 - 0.1.1
+### 31.10.2015 - 0.1.1
 
 <pre>
 * Corrected emitArguments to be variable length argument list unknown committed 
@@ -80,7 +81,7 @@ This and few more example in [example](example) directory.
 * Changed description to match that of github 
 </pre>
 
-###31.10.2015 - 0.1.0
+### 31.10.2015 - 0.1.0
 
 <pre>
 * Bump to version 0.1.0, first public release
