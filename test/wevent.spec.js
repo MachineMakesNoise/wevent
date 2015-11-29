@@ -7,7 +7,7 @@ const wevent = require("../index.js");
 const on = wevent.on;
 const off = wevent.off;
 const emit = wevent.emit;
-const getEventListenerCount = wevent.getEventListenerCount;
+const count = wevent.count;
 
 describe("wevent", () => {
   describe("on", () => {
@@ -266,29 +266,29 @@ describe("wevent", () => {
       expect(result).to.equal(2);
     }));
   });
-  it("getEventListener count should reflect attached count", () => co(
+  it("count should reflect attached count", () => co(
     function*() {
       const obj = {};
       const eventListener1 = () => null;
       const eventListener2 = () => null;
-      expect(getEventListenerCount(obj)).to.equal(0);
-      expect(getEventListenerCount(obj, eventListener1)).to.equal(0);
-      expect(getEventListenerCount(obj, eventListener1)).to.equal(0);
+      expect(count(obj)).to.equal(0);
+      expect(count(obj, eventListener1)).to.equal(0);
+      expect(count(obj, eventListener1)).to.equal(0);
       on(obj, eventListener1);
       on(obj, eventListener2);
       on(obj, eventListener2);
-      expect(getEventListenerCount(obj)).to.equal(2);
-      expect(getEventListenerCount(obj, eventListener1)).to.equal(1);
-      expect(getEventListenerCount(obj, eventListener2)).to.equal(2);
+      expect(count(obj)).to.equal(3);
+      expect(count(obj, eventListener1)).to.equal(1);
+      expect(count(obj, eventListener2)).to.equal(2);
       off(obj, eventListener2);
-      expect(getEventListenerCount(obj, eventListener2)).to.equal(1);
+      expect(count(obj, eventListener2)).to.equal(1);
       off(obj, eventListener2);
-      expect(getEventListenerCount(obj, eventListener2)).to.equal(0);
-      expect(getEventListenerCount(obj)).to.equal(1);
+      expect(count(obj, eventListener2)).to.equal(0);
+      expect(count(obj)).to.equal(1);
       off(obj, eventListener1);
-      expect(getEventListenerCount(obj)).to.equal(0);
-      expect(getEventListenerCount(obj, eventListener1)).to.equal(0);
-      expect(getEventListenerCount(obj, eventListener2)).to.equal(0);
+      expect(count(obj)).to.equal(0);
+      expect(count(obj, eventListener1)).to.equal(0);
+      expect(count(obj, eventListener2)).to.equal(0);
 
     }
   ));
