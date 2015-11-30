@@ -5,7 +5,7 @@
 * [Wevent](#Wevent)
   * [new Wevent([weakMap])](#new_Wevent_new)
   * [.on(object, eventListener)](#Wevent+on) ⇒ <code>function</code>
-  * [.off(object, [eventListener])](#Wevent+off) ⇒ <code>undefined</code>
+  * [.off(object, [eventListener])](#Wevent+off) ⇒ <code>boolean</code>
   * [.emit(object, ...emitArguments)](#Wevent+emit) ⇒ <code>Promise</code>
   * [.count(object, [eventListener])](#Wevent+count) ⇒ <code>number</code>
 
@@ -31,10 +31,11 @@ Bind event listener to object.
 | eventListener | <code>function</code> | Event listener to bind. |
 
 <a name="Wevent+off"></a>
-### wevent.off(object, [eventListener]) ⇒ <code>undefined</code>
+### wevent.off(object, [eventListener]) ⇒ <code>boolean</code>
 Unbind event listener on object.
 
 **Kind**: instance method of <code>[Wevent](#Wevent)</code>  
+**Returns**: <code>boolean</code> - Did the off remove event listener(s).  
 
 | Param | Type | Description |
 | --- | --- | --- |
