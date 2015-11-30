@@ -5,7 +5,6 @@ const wevent = require("../index.js");
 const on = wevent.on;
 const off = wevent.off;
 const emit = wevent.emit;
-const getEventListenerCount = wevent.getEventListenerCount;
 
 let count = 0;
 // Define event listener function re-emits if count < 3

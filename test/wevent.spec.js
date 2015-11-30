@@ -303,7 +303,7 @@ describe("wevent", () => {
     it("should listen to emit",
       (done) => {
         const instance = new Wevent();
-        const obj = { "test" : 1234 };
+        const obj = { };
         let offFunction;
         const eventListener = (_, arg) => {
           if (arg !== obj) return;
