@@ -10,7 +10,7 @@ const obj = { };
 let offFunction;
 const eventListener = (_, arg) => {
   if (arg !== obj) return;
-  console.log("Great success!")
+  console.log("Great success!");
   offFunction();
 };
 offFunction = on(emit, eventListener);
