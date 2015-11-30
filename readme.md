@@ -16,7 +16,7 @@ not required
 * Complex event listener control flows. These are managed by returning *wevent* 
 functions from event listener (e.g. possible to do "once", "re-emitting" or 
 similar more "complex" event listeners).
-* Small (<200 lines with comments), no runtime dependencies
+* Small (<250 lines with comments), no runtime dependencies
 * Does not pollute either target or listener
 * Can be used to create isolated event listener system
 
