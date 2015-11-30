@@ -3,11 +3,12 @@
 const expect = require("chai").expect;
 const co = require("co");
 const wevent = require("../index.js");
+const Wevent = wevent.Wevent;
 
 const on = wevent.on;
 const off = wevent.off;
 const emit = wevent.emit;
-const getEventListenerCount = wevent.getEventListenerCount;
+const count = wevent.count;
 
 describe("wevent", () => {
   describe("on", () => {
@@ -22,6 +23,22 @@ describe("wevent", () => {
     it("should throw Error adding to wrong type of handle", () => {
       expect(() => on(1234, function() {})).to.throw(Error);
     });
+    it("should listen to on",
+      (done) => {
+        const instance = new Wevent();
+        const obj = { "test" : 1234 };
+        const eventListener = (offFunction, arg) => {
+          if (arg !== obj) return;
+          expect(obj).to.equal(arg);
+          offFunction();
+          expect(instance.count(instance.emit)).to.equal(0);
+          done();
+        };
+        instance.on(instance.on, eventListener);
+        expect(instance.count(instance.on)).to.equal(1);
+        instance.on(obj, () => null);
+      }
+    );
   });
   describe("off", () => {
     it("should remove event listener by argument", ()=> co(function*() {
@@ -58,6 +75,24 @@ describe("wevent", () => {
     it("should succeed removing event that doesn't exist", ()=> co(function*() {
       off({}, () => null);
     }));
+    it("should listen to off",
+      (done) => {
+        const instance = new Wevent();
+        const obj = { "test" : 1234 };
+        let offFunction;
+        const eventListener = (_, arg) => {
+          if (arg !== obj) return;
+          expect(obj).to.equal(arg);
+          offFunction();
+          expect(instance.count(instance.emit)).to.equal(0);
+          done();
+        };
+        offFunction = instance.on(instance.off, eventListener);
+        const offFunctionInstance = instance.on(obj, () => null);
+        expect(instance.count(instance.off)).to.equal(1);
+        offFunctionInstance();
+      }
+    );
   });
   describe("emit", () => {
     it("should emit to no listener", () => co(function*() {
@@ -265,31 +300,75 @@ describe("wevent", () => {
       yield emit(otherInstance.test);
       expect(result).to.equal(2);
     }));
+    it("should listen to emit",
+      (done) => {
+        const instance = new Wevent();
+        const obj = { };
+        let offFunction;
+        const eventListener = (_, arg) => {
+          if (arg !== obj) return;
+          expect(obj).to.equal(arg);
+          offFunction();
+          expect(instance.count(instance.emit)).to.equal(0);
+          done();
+        };
+        offFunction = instance.on(instance.emit, eventListener);
+        expect(instance.count(instance.emit)).to.equal(1);
+        instance.emit(obj);
+      }
+    );
   });
-  it("getEventListener count should reflect attached count", () => co(
-    function*() {
-      const obj = {};
-      const eventListener1 = () => null;
-      const eventListener2 = () => null;
-      expect(getEventListenerCount(obj)).to.equal(0);
-      expect(getEventListenerCount(obj, eventListener1)).to.equal(0);
-      expect(getEventListenerCount(obj, eventListener1)).to.equal(0);
-      on(obj, eventListener1);
-      on(obj, eventListener2);
-      on(obj, eventListener2);
-      expect(getEventListenerCount(obj)).to.equal(2);
-      expect(getEventListenerCount(obj, eventListener1)).to.equal(1);
-      expect(getEventListenerCount(obj, eventListener2)).to.equal(2);
-      off(obj, eventListener2);
-      expect(getEventListenerCount(obj, eventListener2)).to.equal(1);
-      off(obj, eventListener2);
-      expect(getEventListenerCount(obj, eventListener2)).to.equal(0);
-      expect(getEventListenerCount(obj)).to.equal(1);
-      off(obj, eventListener1);
-      expect(getEventListenerCount(obj)).to.equal(0);
-      expect(getEventListenerCount(obj, eventListener1)).to.equal(0);
-      expect(getEventListenerCount(obj, eventListener2)).to.equal(0);
-
-    }
-  ));
+  describe("count", () => {
+    it("count should reflect attached count", () => co(
+      function*() {
+        const obj = {};
+        const eventListener1 = () => null;
+        const eventListener2 = () => null;
+        expect(count(obj)).to.equal(0);
+        expect(count(obj, eventListener1)).to.equal(0);
+        expect(count(obj, eventListener1)).to.equal(0);
+        on(obj, eventListener1);
+        on(obj, eventListener2);
+        on(obj, eventListener2);
+        expect(count(obj)).to.equal(3);
+        expect(count(obj, eventListener1)).to.equal(1);
+        expect(count(obj, eventListener2)).to.equal(2);
+        off(obj, eventListener2);
+        expect(count(obj, eventListener2)).to.equal(1);
+        off(obj, eventListener2);
+        expect(count(obj, eventListener2)).to.equal(0);
+        expect(count(obj)).to.equal(1);
+        off(obj, eventListener1);
+        expect(count(obj)).to.equal(0);
+        expect(count(obj, eventListener1)).to.equal(0);
+        expect(count(obj, eventListener2)).to.equal(0);
+      }
+    ));
+  });
+  describe("isolated", () => {
+    it("should create isolated Wevent instance and not leak emit",
+      () => co(function*() {
+        const obj = {};
+        const instance = new Wevent();
+        let emitted = 0;
+        const eventListener = () => emitted++;
+        instance.on(obj, eventListener);
+        yield emit(obj);
+        yield instance.emit(obj);
+        expect(emitted).to.equal(1);
+      }
+    ));
+    it("should create isolated Wevent instance and not leak on",
+      () => co(function*() {
+        const obj = {};
+        const instance = new Wevent();
+        let emitted = 0;
+        const eventListener = () => emitted++;
+        on(obj, eventListener);
+        instance.on(obj, eventListener);
+        yield instance.emit(obj);
+        expect(emitted).to.equal(1);
+      }
+    ));
+  });
 });

@@ -16,8 +16,10 @@ not required
 * Complex event listener control flows. These are managed by returning *wevent* 
 functions from event listener (e.g. possible to do "once", "re-emitting" or 
 similar more "complex" event listeners).
-* Small (<200 lines with comments), no runtime dependencies
-
+* Small (<250 lines with comments), no runtime dependencies
+* Does not pollute either target or listener
+* Can be used to create isolated event listener system
+* wevent functions (on/off/emit) emit as well, these are listenable
 
 ## API
 
@@ -72,15 +74,28 @@ This and few more example in [example](example) directory.
 
 ## Changes
 
-###31.10.2015 - 0.1.1
+### 30.11.2015 - 0.2.0
 
 <pre>
-* Corrected emitArguments to be variable length argument list unknown committed 
-6 minutes ago
+* Fixed examples …
++ Documentation for listening wevent functions
+* Cleaned code …
+* Off now results in boolean …
+* Line count to reflect changes
+* Own bind function to store original function used to resolve the re… …
+* Upgraded jsdoc-to-markdown because it crashed building doc …
+* fixed count calculating same entries correct …
+- Unnecessary error reject. 
+</pre>
+
+### 31.10.2015 - 0.1.1
+
+<pre>
+* Corrected emitArguments to be variable length argument list
 * Changed description to match that of github 
 </pre>
 
-###31.10.2015 - 0.1.0
+### 31.10.2015 - 0.1.0
 
 <pre>
 * Bump to version 0.1.0, first public release

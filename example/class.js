@@ -31,9 +31,9 @@ const b = new TestClass();
 // Attach event listener to handles
 on(a.handle, eventListener);
 on(b.handle, eventListener);
-// Note here we attach to not an instance handle that is created on constructor,
-// we attach to function defined in class. To make instance functions "unique"
-// either wrap, bind or similar to create a unique instance of that function to
+// Note here we attach to not an isolatedWevent handle that is created on constructor,
+// we attach to function defined in class. To make isolatedWevent functions "unique"
+// either wrap, bind or similar to create a unique isolatedWevent of that function to
 // bind to
 on(TestClass.prototype.classFunction, eventListener);
 // Emit to handles

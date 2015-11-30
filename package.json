@@ -1,6 +1,6 @@
 {
   "name": "wevent",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Weak event system for ES6.",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "doc": "node node_modules/jsdoc-to-markdown/bin/cli.js \"lib/**/*.js\" > api.md"
   },
   "author": "Santtu Syrjälä",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "repository" : "https://github.com/saviilsy/wevent.git",
   "devDependencies": {
     "co": "4.6.0",
@@ -18,7 +18,7 @@
     "chai": "3.4.0",
     "eslint": "1.7.3",
     "istanbul": "0.4.0",
-    "jsdoc-to-markdown": "1.2.0",
+    "jsdoc-to-markdown": "1.2.1",
     "mocha": "2.3.3"
   }
 }
