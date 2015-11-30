@@ -20,7 +20,7 @@ Construct Wevent object
 
 <a name="Wevent+on"></a>
 ### wevent.on(object, eventListener) ⇒ <code>function</code>
-Bind event listener to object.
+Bind event listener to object. You can bind to this function as well, theemitted arguments are : (off function for this on), (object listened on),(event listener supplied).
 
 **Kind**: instance method of <code>[Wevent](#Wevent)</code>  
 **Returns**: <code>function</code> - Off function tied directly to recently boundevent listener.  
@@ -32,7 +32,7 @@ Bind event listener to object.
 
 <a name="Wevent+off"></a>
 ### wevent.off(object, [eventListener]) ⇒ <code>boolean</code>
-Unbind event listener on object.
+Unbind event listener on object. You can bind to this function as well, theemitted arguments are : (did off result in removing), (object unlistened),(event listener supplied).
 
 **Kind**: instance method of <code>[Wevent](#Wevent)</code>  
 **Returns**: <code>boolean</code> - Did the off remove event listener(s).  
@@ -44,7 +44,7 @@ Unbind event listener on object.
 
 <a name="Wevent+emit"></a>
 ### wevent.emit(object, ...emitArguments) ⇒ <code>Promise</code>
-Emit an event on object.
+Emit an event on object. You can bind to this function as well, theemitted arguments are : (count emitted), (object emitted to),(...emit arguments).
 
 **Kind**: instance method of <code>[Wevent](#Wevent)</code>  
 **Returns**: <code>Promise</code> - Promise when emit has finished on all event listeners.  
