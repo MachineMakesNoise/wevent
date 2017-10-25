@@ -1,10 +1,10 @@
 "use strict";
 
-const wevent = require("../index.js");
+const Wevent = require("../index.js");
 
-const on = wevent.on;
-const off = wevent.off;
-const emit = wevent.emit;
+const on = Wevent.on;
+const off = Wevent.off;
+const emit = Wevent.emit;
 
 let message = "";
 // Define event listener function that return promise

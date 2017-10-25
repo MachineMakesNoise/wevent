@@ -1,8 +1,9 @@
 {
   "name": "wevent",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Weak event system for ES6.",
   "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha",
     "lint": "node node_modules/eslint/bin/eslint.js lib test",
@@ -11,14 +12,12 @@
   },
   "author": "Santtu Syrjälä",
   "license": "Apache-2.0",
-  "repository" : "https://github.com/saviilsy/wevent.git",
+  "repository": "https://github.com/saviilsy/wevent.git",
   "devDependencies": {
-    "co": "4.6.0",
-    "bunyan": "1.5.1",
-    "chai": "3.4.0",
-    "eslint": "1.7.3",
-    "istanbul": "0.4.0",
-    "jsdoc-to-markdown": "1.2.1",
-    "mocha": "2.3.3"
+    "chai": "4.1.2",
+    "eslint": "4.9.0",
+    "istanbul": "0.4.5",
+    "jsdoc-to-markdown": "3.0.0",
+    "mocha": "4.0.1"
   }
 }

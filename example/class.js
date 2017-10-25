@@ -1,10 +1,10 @@
 "use strict";
 
-const wevent = require("../index.js");
+const Wevent = require("../index.js");
 
-const on = wevent.on;
-const off = wevent.off;
-const emit = wevent.emit;
+const on = Wevent.on;
+const off = Wevent.off;
+const emit = Wevent.emit;
 
 let sharedCount = 0;
 
@@ -17,7 +17,7 @@ class TestClass {
 
   classFunction() {
     // Something here
-    return emit(this.classFunction);
+    return emit(this.classFunction, this);
   }
 
 }
@@ -35,7 +35,7 @@ on(b.handle, eventListener);
 // we attach to function defined in class. To make isolatedWevent functions "unique"
 // either wrap, bind or similar to create a unique isolatedWevent of that function to
 // bind to
-on(TestClass.prototype.classFunction, eventListener);
+on(TestClass.prototype.classFunction, sharedEventListener);
 // Emit to handles
 Promise.all([
   emit(a.handle, a),

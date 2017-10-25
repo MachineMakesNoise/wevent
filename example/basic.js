@@ -1,11 +1,11 @@
 "use strict";
 
-const wevent = require("../index.js");
+const Wevent = require("../index.js");
 
-const on = wevent.on;
-const off = wevent.off;
-const emit = wevent.emit;
-const count = wevent.count;
+const on = Wevent.on;
+const off = Wevent.off;
+const emit = Wevent.emit;
+const count = Wevent.count;
 
 let message = "";
 let listenerCount = 0;
