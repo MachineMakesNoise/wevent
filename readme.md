@@ -74,6 +74,16 @@ This and few more example in [example](example) directory.
 
 ## Changes
 
+### 30.11.2015 - 0.3.0
+
+<pre>
+* Fixed examples
+* Fixed typos
+* Cleaned more code
+* Now exports the class as default export and uses static function of the class for global wevent instance, does not pollute window or global anymore.
++ Typescript d.ts 
+</pre>
+
 ### 30.11.2015 - 0.2.0
 
 <pre>
