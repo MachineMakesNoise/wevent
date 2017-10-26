@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "Weak event system for ES6.",
   "main": "index.js",
-  "typings": "wevent.d.ts",
+  "typings": "index.d.ts",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha",
     "lint": "node node_modules/eslint/bin/eslint.js lib test",

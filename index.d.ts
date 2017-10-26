@@ -17,6 +17,4 @@ declare class Wevent {
     static count: CountFunction;
 }
 
-declare module "Wevent" {
-    export default Wevent;
-}
+export default Wevent;
