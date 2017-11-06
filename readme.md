@@ -80,7 +80,7 @@ This and few more example in [example](example) directory.
 * Fixed examples
 * Fixed typos
 * Cleaned more code
-* Now exports the class as default export and uses static function of the class for global wevent instance, does not pollute window or global anymore.
+* Only instance based now, does not pollute window or global anymore.
 + Typescript d.ts 
 </pre>
 

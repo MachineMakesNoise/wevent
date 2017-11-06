@@ -11,10 +11,6 @@ declare class Wevent {
     off: OffFunction;
     emit: EmitFunction;
     count: CountFunction;
-    static on: OnFunction;
-    static off: OffFunction;
-    static emit: EmitFunction;
-    static count: CountFunction;
 }
 
 export default Wevent;
